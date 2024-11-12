@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { enterEvent } from '../services/eventService' // enterEvent 함수 import
+import { useNavigate } from 'react-router-dom'
+import { enterEvent } from '../services/eventService'
 
 export default function EventJoinModal({ onClose }) {
     const [eventCode, setEventCode] = useState('')
