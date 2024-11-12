@@ -53,10 +53,12 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public ResponseEntity<? super EnterEventResponseDto> enterEvent(EnterEventRequestDto dto) {
+        String eventName = "";
         try{
-            boolean exists = eventRepo.existsById(dto.getEnterCode());
+            Optional<EventEntity> event = eventRepo.findById(dto.getEnterCode());
+            if(event.isEmpty()) return EnterEventResponseDto.eventNotFound();
+            eventName = event.get().getEventName();
 
-            if(!exists) return EnterEventResponseDto.eventNotFound();
 
         }
         catch (Exception exception){
@@ -64,7 +66,7 @@ public class EventServiceImpl implements EventService {
             return EnterEventResponseDto.databaseError();
         }
 
-        return EnterEventResponseDto.success();
+        return EnterEventResponseDto.success(eventName);
     }
 
     @Override
