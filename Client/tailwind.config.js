@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Pretendard', 'sans-serif'],
+        geist: ['GeistMono', 'monospace'], // 커스텀 폰트 설정
+      },
+    },
   },
   plugins: [],
 }
