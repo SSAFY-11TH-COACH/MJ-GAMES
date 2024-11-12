@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <div className="flex min-h-screen">
+      <div className="w-full min-h-screen flex flex-col items-center justify-center">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
