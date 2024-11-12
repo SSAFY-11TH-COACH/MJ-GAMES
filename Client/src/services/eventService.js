@@ -9,7 +9,7 @@ const api = axios.create({
 // 이벤트 생성 요청
 export const createEvent = async (eventName, startTime) => {
     try {
-        const response = await api.post('/', {
+        const response = await api.post('', {
             eventName,
             startTime,
         })
