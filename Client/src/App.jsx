@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import EventDetailPage from './pages/EventDetailPage'
-import './App.css'
+import Header from './components/Header'
 
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <div className="w-full min-h-screen flex flex-col items-center justify-center">
+      <div className="w-full min-h-screen">
+        <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
