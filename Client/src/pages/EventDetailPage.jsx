@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { getEventResults, registerEventResult } from '../services/eventService' // API 함수 import
+import { useParams, useLocation } from 'react-router-dom'
+import { getEventResults, registerEventResult } from '../services/eventService'
 
 export default function EventDetailPage() {
     const { eventId } = useParams()
+    const location = useLocation()
+    const [eventName, setEventName] = useState(location.state?.eventName || "이벤트 이름") // 전달된 eventName 사용
     const [teamName, setTeamName] = useState("e204")
     const [isEditing, setIsEditing] = useState(false)
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString())
-    const [eventResults, setEventResults] = useState([]) // 이벤트 결과 리스트 저장
-    const [loading, setLoading] = useState(true) // 로딩 상태
+    const [eventResults, setEventResults] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const handleEditClick = () => {
         setIsEditing(true)
@@ -22,7 +24,6 @@ export default function EventDetailPage() {
         setIsEditing(false)
     }
 
-    // 현재 시간 업데이트
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentTime(new Date().toLocaleTimeString())
@@ -30,13 +31,12 @@ export default function EventDetailPage() {
         return () => clearInterval(intervalId)
     }, [])
 
-    // 이벤트 결과 리스트 조회
     useEffect(() => {
         const fetchEventResults = async () => {
             try {
                 setLoading(true)
                 const data = await getEventResults(eventId)
-                setEventResults(data.eventResults) // 결과 리스트 저장
+                setEventResults(data.eventResults)
             } catch (error) {
                 console.error("Error fetching event results:", error)
                 alert("이벤트 결과를 불러오는 중 오류가 발생했습니다.")
@@ -47,12 +47,10 @@ export default function EventDetailPage() {
         fetchEventResults()
     }, [eventId])
 
-    // 이벤트 결과 등록
     const handleRegisterEventResult = async () => {
         try {
             const response = await registerEventResult(teamName, eventId, new Date().toISOString())
             alert(response.message)
-            // 성공적으로 등록한 후, 결과 리스트를 다시 조회
             const updatedResults = await getEventResults(eventId)
             setEventResults(updatedResults.eventResults)
         } catch (error) {
@@ -65,9 +63,8 @@ export default function EventDetailPage() {
         <div className="flex flex-col items-center bg-gray-100 min-h-screen w-screen">
             <div className="w-full bg-white p-6 rounded-lg shadow-md">
                 <div className="flex justify-between mb-4">
-                    {/* 이벤트 이름과 초대 코드 표시 */}
                     <div className="text-xl font-semibold">
-                        이벤트 이름 / 초대 코드: {eventId}
+                        {eventName} / 초대 코드: {eventId}
                     </div>
                     <div className="flex items-center space-x-2">
                         {isEditing ? (

@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom' // useNavigate import
 import { createEvent } from '../services/eventService'
 
 export default function EventCreateModal({ onClose }) {
     const [eventName, setEventName] = useState('')
-    const [date, setDate] = useState('') // 날짜 상태 추가
+    const [date, setDate] = useState('')
     const [startTime, setStartTime] = useState('')
+    const navigate = useNavigate()
 
     const handleCreateEvent = async () => {
         if (!eventName || !date || !startTime) {
@@ -12,14 +14,20 @@ export default function EventCreateModal({ onClose }) {
             return
         }
 
-        // 날짜와 시간을 결합하여 ISO 8601 형식으로 변환
         const fullDateTime = `${date}T${startTime}:00`
 
         try {
             const response = await createEvent(eventName, fullDateTime)
             console.log("Event Created:", response)
-            alert(response.message) // 성공 메시지 출력
-            onClose() // 모달 닫기
+            alert(response.message)
+
+            if (response.enterCode) {
+                // 이벤트 생성 후 해당 방으로 이동
+                navigate(`/event/${response.enterCode}`, {
+                    state: { eventName: response.eventName } // eventName 전달
+                })
+            }
+            onClose()
         } catch (error) {
             alert("이벤트 생성 중 오류가 발생했습니다.")
         }
@@ -37,7 +45,7 @@ export default function EventCreateModal({ onClose }) {
                     className="border border-gray-300 p-2 rounded w-full mb-4"
                 />
                 <input
-                    type="date" // 날짜 입력 필드 추가
+                    type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="border border-gray-300 p-2 rounded w-full mb-4"
