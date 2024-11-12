@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
+import EventDetailPage from './pages/EventDetailPage'
 import './App.css'
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <div className="flex min-h-screen">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/event/:eventId" element={<EventDetailPage />} />
         </Routes>
       </div>
     </Router>
