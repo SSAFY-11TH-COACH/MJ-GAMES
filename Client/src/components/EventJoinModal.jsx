@@ -1,15 +1,27 @@
 import { useState } from 'react'
+import { enterEvent } from '../services/eventService' // enterEvent 함수 import
 
 export default function EventJoinModal({ onClose }) {
     const [eventCode, setEventCode] = useState('')
     const [teamName, setTeamName] = useState('')
 
-    const handleJoinEvent = () => {
-        if (eventCode && teamName) {
-            console.log("Joining Event:", { eventCode, teamName })
-            onClose()
-        } else {
+    const handleJoinEvent = async () => {
+        if (!eventCode || !teamName) {
             alert("이벤트 코드와 팀 이름을 입력해주세요.")
+            return
+        }
+
+        try {
+            const response = await enterEvent(eventCode) // enterEvent API 호출
+            console.log("Joining Event:", response)
+            alert(response.message) // 성공 메시지 출력
+            onClose() // 모달 닫기
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                alert(error.response.data.message) // "존재하지 않는 이벤트 입니다." 메시지
+            } else {
+                alert("이벤트 참여 중 오류가 발생했습니다.")
+            }
         }
     }
 
