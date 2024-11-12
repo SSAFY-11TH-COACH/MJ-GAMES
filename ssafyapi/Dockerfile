@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file from the host to the container
-COPY ./build/libs/cicd-0.0.1-SNAPSHOT.jar app.jar
+COPY ./build/libs/ssafyapi-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
