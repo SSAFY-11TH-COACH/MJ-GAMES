@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ssafyapi
+  datasource:
+    url: jdbc:mysql://t1130.p.ssafy.io:3307/ssafyapi?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
