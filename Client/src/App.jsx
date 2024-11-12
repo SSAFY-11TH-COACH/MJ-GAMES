@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import EventDetailPage from './pages/EventDetailPage'
 import './App.css'
+import CoinGamePage from './pages/CoinGamePage'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
+          <Route path="/event/:eventId/game/coin" element={<CoinGamePage />} />
         </Routes>
       </div>
     </Router>
