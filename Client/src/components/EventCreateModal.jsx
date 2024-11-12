@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createEvent, enterEvent } from '../services/eventService' // enterEvent 추가 import
+import { createEvent, enterEvent } from '../services/eventService'
 
 export default function EventCreateModal({ onClose }) {
     const [eventName, setEventName] = useState('')
@@ -29,7 +29,7 @@ export default function EventCreateModal({ onClose }) {
                 
                 // 참여가 성공하면 EventDetailPage로 이동
                 navigate(`/event/${response.enterCode}`, {
-                    state: { eventName: enterResponse.eventName } // eventName 전달
+                    state: { eventName: enterResponse.eventName, teamName: "admin" } // eventName과 teamName 전달
                 })
             }
             onClose()

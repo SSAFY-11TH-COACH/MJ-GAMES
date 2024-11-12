@@ -21,10 +21,11 @@ export const createEvent = async (eventName, startTime) => {
 }
 
 // 이벤트 참여 요청
-export const enterEvent = async (enterCode) => {
+export const enterEvent = async (enterCode, teamName) => {
     try {
         const response = await api.post('/enter', { 
             enterCode,
+            teamName
         })
         return response.data
     } catch (error) {

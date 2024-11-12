@@ -5,8 +5,8 @@ import { getEventResults, registerEventResult } from '../services/eventService'
 export default function EventDetailPage() {
     const { eventId } = useParams()
     const location = useLocation()
-    const [eventName, setEventName] = useState(location.state?.eventName || "이벤트 이름") // 전달된 eventName 사용
-    const [teamName, setTeamName] = useState("e204")
+    const [eventName, setEventName] = useState(location.state?.eventName || "이벤트 이름")
+    const [teamName, setTeamName] = useState(location.state?.teamName || "e204")
     const [isEditing, setIsEditing] = useState(false)
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString())
     const [eventResults, setEventResults] = useState([])

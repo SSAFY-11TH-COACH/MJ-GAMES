@@ -21,7 +21,7 @@ export default function EventJoinModal({ onClose }) {
             if (response.eventName) {
                 // 참여 성공 후 해당 방으로 이동
                 navigate(`/event/${eventCode}`, {
-                    state: { eventName: response.eventName } // eventName 전달
+                    state: { eventName: response.eventName, teamName: teamName } // eventName 전달
                 })
             }
             onClose()
