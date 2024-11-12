@@ -32,9 +32,10 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public ResponseEntity<? super CreateEventResponseDto> createEvent(CreateEventRequestDto dto) {
+        UUID uuid = UUID.randomUUID();
+        final String STR_UUID = uuid.toString();
         try{
-            UUID uuid = UUID.randomUUID();
-            final String STR_UUID = uuid.toString();
+
 
             EventEntity newEventEntity = new EventEntity();
             newEventEntity.setEventId(STR_UUID);
@@ -47,7 +48,7 @@ public class EventServiceImpl implements EventService {
             exception.printStackTrace();
             return CreateEventResponseDto.databaseError();
         }
-        return CreateEventResponseDto.success();
+        return CreateEventResponseDto.success(STR_UUID);
     }
 
     @Override
