@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // useNavigate import
-import { createEvent } from '../services/eventService'
+import { useNavigate } from 'react-router-dom'
+import { createEvent, enterEvent } from '../services/eventService' // enterEvent 추가 import
 
 export default function EventCreateModal({ onClose }) {
     const [eventName, setEventName] = useState('')
@@ -17,19 +17,24 @@ export default function EventCreateModal({ onClose }) {
         const fullDateTime = `${date}T${startTime}:00`
 
         try {
+            // 이벤트 생성 요청
             const response = await createEvent(eventName, fullDateTime)
             console.log("Event Created:", response)
             alert(response.message)
 
             if (response.enterCode) {
-                // 이벤트 생성 후 해당 방으로 이동
+                // 생성된 이벤트에 admin으로 자동 참여 요청
+                const enterResponse = await enterEvent(response.enterCode, "admin")
+                console.log("Entered Event as admin:", enterResponse)
+                
+                // 참여가 성공하면 EventDetailPage로 이동
                 navigate(`/event/${response.enterCode}`, {
-                    state: { eventName: response.eventName } // eventName 전달
+                    state: { eventName: enterResponse.eventName } // eventName 전달
                 })
             }
             onClose()
         } catch (error) {
-            alert("이벤트 생성 중 오류가 발생했습니다.")
+            alert("이벤트 생성 또는 참여 중 오류가 발생했습니다.")
         }
     }
 
