@@ -8,7 +8,10 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Pretendard', 'sans-serif'],
-        geist: ['GeistMono', 'monospace'], // 커스텀 폰트 설정
+        geist: ['GeistMono', 'monospace'],
+        jersey: ['"Jersey 10"', 'sans-serif'],
+        hanalei: ['Hanalei Fill', 'monospace'],
+        Caveat: ['Caveat Brush', 'cursive'],
       },
     },
   },
