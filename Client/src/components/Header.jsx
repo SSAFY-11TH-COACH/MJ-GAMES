@@ -8,7 +8,7 @@ export default function Header() {
             <div className="container max-w-7xl flex justify-between items-center mx-auto">
                 <Link to="/" className="flex items-center">
                     <img src={logo} alt="Logo" className="h-10 mr-2" />
-                    <h1 className="text-2xl font-Caveat text-white mt-2">GAMES</h1>
+                    <h1 className="text-xl font-Caveat text-white mt-3">GAMES</h1>
                 </Link>
                 <nav className="flex space-x-2 font-geist font-light">
                     <a href="https://github.com/thingseong" target="_blank" rel="noopener noreferrer" className="flex items-center px-4">
