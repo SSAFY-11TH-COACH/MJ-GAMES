@@ -6,7 +6,7 @@ import Header from './components/Header'
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <div className="w-full min-h-screen">
+      <div className="w-full min-h-screen bg-gray-800">
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
