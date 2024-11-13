@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         sans: ['Pretendard', 'sans-serif'],
         geist: ['GeistMono', 'monospace'],
+        cliff: ['Greycliff CF', 'monospace'],
+        eastarjet: ['EASTARJET', 'sans-serif'],
+        sdsamlip: ['SDSamliphopangche', 'sans-serif'],
         jersey: ['"Jersey 10"', 'sans-serif'],
         hanalei: ['Hanalei Fill', 'monospace'],
         Caveat: ['Caveat Brush', 'cursive'],

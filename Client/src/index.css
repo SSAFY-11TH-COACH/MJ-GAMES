@@ -67,4 +67,50 @@
     font-weight: 200;
     font-style: normal;
   }
+
+  /* Greycliff 폰트 */
+  @font-face {
+    font-family: 'Greycliff CF';
+    src: url('/src/assets/fonts/GreycliffCF-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Greycliff CF';
+    src: url('/src/assets/fonts/GreycliffCF-Heavy.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  /* EASTARJET 폰트 */
+  @font-face {
+    font-family: 'EASTARJET';
+    src: url("/src/assets/fonts/EASTARJET-DemiLight.woff2") format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'EASTARJET';
+    src: url("/src/assets/fonts/EASTARJET-Medium.woff2") format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'EASTARJET';
+    src: url("/src/assets/fonts/EASTARJET-Heavy.woff2") format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* 삼립호빵 폰트 */
+  @font-face {
+    font-family: 'SDSamliphopangche';
+    src: url('/src/assets/fonts/SDSamliphopangcheBasic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 }
